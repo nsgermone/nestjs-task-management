@@ -1,4 +1,4 @@
-export interface Tast {
+export interface Task {
   id: string;
   title: string;
   description: string;
