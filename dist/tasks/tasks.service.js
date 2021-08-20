@@ -17,11 +17,11 @@ let TasksService = class TasksService {
     getAllTasks() {
         return this.tasks;
     }
-    createTask() {
+    createTask(title, description) {
         const task = {
             id: uuid_1.v4(),
-            title: '',
-            description: '',
+            title,
+            description,
             status: task_model_1.TaskStatus.OPEN
         };
         this.tasks.push(task);

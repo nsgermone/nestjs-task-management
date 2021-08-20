@@ -10,11 +10,11 @@ export class TasksService {
     return this.tasks;
   }
 
-  createTask(): Task {
+  createTask(title: string, description: string): Task {
     const task: Task = {
       id: uuid(),
-      title: '',
-      description: '',
+      title,
+      description,
       status: TaskStatus.OPEN
     };
 
