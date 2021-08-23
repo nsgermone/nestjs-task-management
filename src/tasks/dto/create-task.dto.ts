@@ -1,4 +1,8 @@
+import { isNotEmpty, IsNotEmpty } from "class-validator";
 export class CreateTastDto {
-    title: string;
-    description: string;
+  @IsNotEmpty()
+  title: string;
+
+  @IsNotEmpty()
+  description: string;
 }
