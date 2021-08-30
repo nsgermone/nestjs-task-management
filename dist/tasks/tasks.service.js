@@ -8,58 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TasksService = void 0;
 const common_1 = require("@nestjs/common");
-const uuid_1 = require("uuid");
-const task_model_1 = require("./task.model");
 let TasksService = class TasksService {
-    constructor() {
-        this.tasks = [];
-    }
-    getAllTasks() {
-        return this.tasks;
-    }
-    getTasksWithFilters(filterDto) {
-        const { status, search } = filterDto;
-        let tasks = this.getAllTasks();
-        if (status) {
-            tasks = tasks.filter((task) => task.status === status);
-        }
-        if (search) {
-            tasks = tasks.filter((task) => {
-                if (task.title.includes(search) || task.description.includes(search)) {
-                    return true;
-                }
-                return false;
-            });
-        }
-        return tasks;
-    }
-    getTaskById(id) {
-        const found = this.tasks.find((task) => task.id === id);
-        if (!found) {
-            throw new common_1.NotFoundException(`Task with ID "${id}" not found`);
-        }
-        return found;
-    }
-    createTask(createTaskDto) {
-        const { title, description } = createTaskDto;
-        const task = {
-            id: uuid_1.v4(),
-            title,
-            description,
-            status: task_model_1.TaskStatus.OPEN,
-        };
-        this.tasks.push(task);
-        return task;
-    }
-    deleteTask(id) {
-        const found = this.getTaskById(id);
-        this.tasks = this.tasks.filter((task) => task.id !== found.id);
-    }
-    updateTaskStatus(id, status) {
-        const task = this.getTaskById(id);
-        task.status = status;
-        return task;
-    }
 };
 TasksService = __decorate([
     common_1.Injectable()
