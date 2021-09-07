@@ -13,11 +13,15 @@ const app_service_1 = require("./app.service");
 const tasks_module_1 = require("./tasks/tasks.module");
 const typeorm_1 = require("@nestjs/typeorm");
 const auth_module_1 = require("./auth/auth.module");
+const config_1 = require("@nestjs/config");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     common_1.Module({
         imports: [
+            config_1.ConfigModule.forRoot({
+                envFilePath: [`.env.stage.${process.env.STAGE}`],
+            }),
             tasks_module_1.TasksModule,
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'postgres',
