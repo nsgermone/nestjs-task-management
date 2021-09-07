@@ -6,6 +6,7 @@ import { UpdateTaskStatusDto } from './dto/update-task-status.dto';
 import { TasksService } from './tasks.service';
 export declare class TasksController {
     private tasksService;
+    private logger;
     constructor(tasksService: TasksService);
     getTasks(filterDto: GetTasksFilterDto, user: User): Promise<Task[]>;
     getTaskById(id: string, user: User): Promise<Task>;
